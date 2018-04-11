@@ -1,24 +1,11 @@
-# README
+# Charts: A template of charts and graphs using the Morris Library
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I've attempted to create sample graphs and charts using the Morris Library and the 'gon' gem to
+create various types of visuals
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Single Line Chart
+* Multi Line Chart
+* Area Graph
+* Bar Chart
+* Stacked Bar Graph
+* Pie Chart
