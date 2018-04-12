@@ -5,6 +5,8 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     @orders = Order.all
+    # Adding gon variable for JS
+    gon.orders = Order.all
   end
 
   # GET /orders/1

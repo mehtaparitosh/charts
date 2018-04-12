@@ -1,0 +1,113 @@
+%p#notice= notice
+%h1 Orders
+%br
+= link_to 'New Order', new_order_path
+%br
+%br
+%table{:border => "1"}
+  %thead
+    %tr
+      %th Number
+      %th Date
+      %th Price
+      %th{:colspan => "3"} Actions
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td= order.number
+        %td= order.date
+        %td= order.price
+        %td= link_to 'Show', order
+        %td= link_to 'Edit', edit_order_path(order)
+        %td= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+%h4 Single Line Chart with Different Colors
+#chart{:style => "width: 400px; height: 250px;"}
+%h4 Two Line Chart with Different Colors
+#line-chart{:style => "width: 400px; height: 250px;"}
+%h4 Area Chart
+#area-chart{:style => "width: 400px; height: 250px;"}
+%h4 Bar Chart
+#bar-chart{:style => "width: 400px; height: 250px;"}
+%h4 Stacked Bar Chart
+#stacked{:style => "width: 400px; height: 250px;"}
+%h4 Pie Chart
+#pie-chart{:style => "width: 400px; height: 250px;"}
+%br
+
+
+
+
+
+:javascript
+  function drawChart() {
+    // Single Line Chart
+    Morris.Line({
+        element: 'chart',
+        data: [
+            {y: '2012', a: 100},
+            {y: '2011', a: 75},
+            {y: '2010', a: 50},
+            {y: '2009', a: 75},
+            {y: '2008', a: 50},
+            {y: '2007', a: 75},
+            {y: '2006', a: 100}
+        ],
+        xkey: 'y',
+        ykeys: ['a'],
+        labels: ['Test series'],
+        lineColors: ['#0b62a4'],
+        pointFillColors: ['#00ff00']
+    });
+
+    var data = [
+      { y: '2014', a: 50, b: 90},
+      { y: '2015', a: 65,  b: 75},
+      { y: '2016', a: 50,  b: 50},
+      { y: '2017', a: 75,  b: 60},
+      { y: '2018', a: 80,  b: 65},
+      { y: '2019', a: 90,  b: 70},
+      { y: '2020', a: 100, b: 75},
+      { y: '2021', a: 115, b: 75},
+      { y: '2022', a: 120, b: 85},
+      { y: '2023', a: 145, b: 85},
+      { y: '2024', a: 160, b: 95}
+      ],
+      config = {
+        data: data,
+        xkey: 'y',
+        ykeys: ['a', 'b'],
+        labels: ['Total Income', 'Total Outcome'],
+        fillOpacity: 0.6,
+        hideHover: 'auto',
+        behaveLikeLine: true,
+        resize: true,
+        pointFillColors:['#ffffff'],
+        pointStrokeColors: ['black'],
+        lineColors:['gray','red']
+      };
+    // Two Line Chart
+    config.element = 'line-chart';
+    Morris.Line(config);
+    // Area chart
+    config.element = 'area-chart';
+    Morris.Area(config);
+    // Bar Chart
+    config.element = 'bar-chart';
+    Morris.Bar(config);
+    // Stacked Bar Graph
+    config.element = 'stacked';
+    config.stacked = true;
+    Morris.Bar(config);
+    // Dougnut chart
+    Morris.Donut({
+      element: 'pie-chart',
+      data: [
+        {label: "Friends", value: 30},
+        {label: "Allies", value: 15},
+        {label: "Enemies", value: 45},
+        {label: "Neutral", value: 10}
+      ]
+    });
+  }
+  window.onload = drawChart;
